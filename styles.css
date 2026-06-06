@@ -1,0 +1,140 @@
+/* FIFA World Cup 2026 — Theme & Custom Styles */
+:root {
+  color-scheme: dark;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  --bg: #020617;
+  --surface: rgba(255,255,255,0.03);
+  --border: rgba(255,255,255,0.06);
+  --text: #f1f5f9;
+  --text-muted: #94a3b8;
+  --accent: #22d3ee;
+  --accent-glow: rgba(34,211,238,0.15);
+  --gold: #fbbf24;
+  --emerald: #34d399;
+}
+
+:root.light {
+  color-scheme: light;
+  --bg: #f8fafc;
+  --surface: rgba(0,0,0,0.02);
+  --border: rgba(0,0,0,0.08);
+  --text: #0f172a;
+  --text-muted: #64748b;
+  --accent: #0891b2;
+  --accent-glow: rgba(8,145,178,0.1);
+  --gold: #d97706;
+  --emerald: #059669;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  min-height: 100dvh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Background pattern */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 0%, rgba(34,211,238,0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 100%, rgba(251,191,36,0.04) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+#app { position: relative; z-index: 1; }
+
+/* Light mode overrides */
+:root.light body { background: #f8fafc; }
+:root.light body::before {
+  background:
+    radial-gradient(ellipse at 20% 0%, rgba(8,145,178,0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 100%, rgba(217,119,6,0.04) 0%, transparent 50%);
+}
+
+/* Light mode text fixes */
+:root.light .text-slate-400 { color: #64748b !important; }
+:root.light .text-slate-500 { color: #94a3b8 !important; }
+:root.light .bg-white\/\[0\.03\] { background: rgba(0,0,0,0.03) !important; }
+:root.light .bg-white\/\[0\.04\] { background: rgba(0,0,0,0.04) !important; }
+:root.light .bg-white\/\[0\.05\] { background: rgba(0,0,0,0.05) !important; }
+:root.light .bg-white\/\[0\.06\] { background: rgba(0,0,0,0.06) !important; }
+:root.light .border-white\/5 { border-color: rgba(0,0,0,0.08) !important; }
+:root.light .border-white\/10 { border-color: rgba(0,0,0,0.1) !important; }
+:root.light .border-white\/15 { border-color: rgba(0,0,0,0.15) !important; }
+:root.light .bg-white\/5 { background: rgba(0,0,0,0.05) !important; }
+:root.light .bg-white\/10 { background: rgba(0,0,0,0.1) !important; }
+:root.light .text-white { color: #0f172a !important; }
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible {
+  box-shadow: 0 0 0 2px var(--accent), 0 0 0 4px rgba(34,211,238,0.3);
+  border-radius: 8px;
+}
+
+/* Nav tab active state */
+.nav-tab.active {
+  color: var(--accent) !important;
+  border-color: var(--accent) !important;
+  background: var(--accent-glow);
+}
+
+/* Animations */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-out {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-8px); }
+}
+
+.animate-fade-in { animation: fade-in 0.3s ease-out; }
+.animate-fade-up { animation: fade-up 0.4s ease-out; }
+.animate-fade-out { animation: fade-out 0.3s ease-in forwards; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+
+/* Active nav tab indicator */
+
+/* Safe area padding for mobile */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .safe-bottom { padding-bottom: calc(env(safe-area-inset-bottom) + 0.5rem); }
+}
+
+/* Pulse animation for live badges */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* Table scroll on mobile */
+.overflow-x-auto::-webkit-scrollbar { height: 2px; }
+
+/* Hide scrollbar utility */
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
