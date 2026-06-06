@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#020617">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title data-i18n="app.title">المونديال الشامل 2026</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="min-h-screen min-h-dvh">
+  <div id="app" class="mx-auto max-w-3xl min-h-screen min-h-dvh flex flex-col">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-40 bg-slate-950/80 backdrop-blur-xl border-b border-white/5">
+      <div class="flex items-center justify-between px-4 py-3">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-cyan-400 to-emerald-400 flex items-center justify-center text-lg">🏆</div>
+          <div>
+            <h1 class="text-sm font-bold text-white leading-tight" data-i18n="app.title">المونديال الشامل 2026</h1>
+            <p class="text-[10px] text-slate-400" data-i18n="app.subtitle">رفيقك الرقمي الأول لكأس العالم 2026</p>
+          </div>
+        </div>
+        <button id="themeToggle" class="w-9 h-9 rounded-xl bg-white/5 hover:bg-white/10 transition flex items-center justify-center text-lg" aria-label="Toggle theme">☀️</button>
+      </div>
+
+      <!-- Desktop Tab Bar -->
+      <nav class="hidden sm:flex items-center gap-1 px-4 pb-2" role="tablist">
+        <button class="nav-tab active px-3 py-1.5 rounded-lg text-xs font-medium transition text-cyan-400 bg-cyan-400/10 border border-cyan-400/20" data-tab="matches" role="tab" aria-selected="true">⚽ <span data-i18n="app.nav.matches">المباريات</span></button>
+        <button class="nav-tab px-3 py-1.5 rounded-lg text-xs font-medium transition text-slate-400 hover:text-white hover:bg-white/5 border border-transparent" data-tab="groups" role="tab" aria-selected="false">📊 <span data-i18n="app.nav.groups">المجموعات</span></button>
+        <button class="nav-tab px-3 py-1.5 rounded-lg text-xs font-medium transition text-slate-400 hover:text-white hover:bg-white/5 border border-transparent" data-tab="favorites" role="tab" aria-selected="false">⭐ <span data-i18n="app.nav.favorites">المفضلة</span></button>
+        <button class="nav-tab px-3 py-1.5 rounded-lg text-xs font-medium transition text-slate-400 hover:text-white hover:bg-white/5 border border-transparent" data-tab="stats" role="tab" aria-selected="false">📈 <span data-i18n="app.nav.stats">الإحصائيات</span></button>
+        <button class="nav-tab px-3 py-1.5 rounded-lg text-xs font-medium transition text-slate-400 hover:text-white hover:bg-white/5 border border-transparent" data-tab="history" role="tab" aria-selected="false">📚 <span data-i18n="app.nav.history">التاريخ</span></button>
+      </nav>
+    </header>
+
+    <!-- Countdown Hero -->
+    <section id="countdown" class="px-4 py-5 border-b border-white/5 bg-gradient-to-b from-cyan-400/[0.04] to-transparent min-h-[80px] flex items-center justify-center">
+      <div class="animate-spin w-6 h-6 border-2 border-cyan-400 border-t-transparent rounded-full"></div>
+    </section>
+
+    <!-- Tab Content -->
+    <main id="tab-content" class="flex-1 px-4 py-6 pb-24 sm:pb-6">
+      <div class="flex items-center justify-center py-16">
+        <div class="animate-spin w-8 h-8 border-2 border-cyan-400 border-t-transparent rounded-full"></div>
+      </div>
+    </main>
+
+    <!-- Bottom Navigation (Mobile Only) -->
+    <nav class="sm:hidden fixed bottom-0 left-0 right-0 z-50 bg-slate-950/95 backdrop-blur-xl border-t border-white/10" role="tablist" style="padding-bottom:env(safe-area-inset-bottom,0)">
+      <div class="max-w-3xl mx-auto flex items-stretch">
+        <button class="nav-tab active flex-1 flex flex-col items-center gap-0.5 py-2 text-[10px] font-medium border-t-2 border-cyan-400 transition text-cyan-400" data-tab="matches" role="tab" aria-selected="true">
+          <span class="text-base leading-none">⚽</span>
+          <span data-i18n="app.nav.matches">المباريات</span>
+        </button>
+        <button class="nav-tab flex-1 flex flex-col items-center gap-0.5 py-2 text-[10px] font-medium border-t-2 border-transparent transition text-slate-400" data-tab="groups" role="tab" aria-selected="false">
+          <span class="text-base leading-none">📊</span>
+          <span data-i18n="app.nav.groups">المجموعات</span>
+        </button>
+        <button class="nav-tab flex-1 flex flex-col items-center gap-0.5 py-2 text-[10px] font-medium border-t-2 border-transparent transition text-slate-400" data-tab="favorites" role="tab" aria-selected="false">
+          <span class="text-base leading-none">⭐</span>
+          <span data-i18n="app.nav.favorites">المفضلة</span>
+        </button>
+        <button class="nav-tab flex-1 flex flex-col items-center gap-0.5 py-2 text-[10px] font-medium border-t-2 border-transparent transition text-slate-400" data-tab="stats" role="tab" aria-selected="false">
+          <span class="text-base leading-none">📈</span>
+          <span data-i18n="app.nav.stats">الإحصائيات</span>
+        </button>
+        <button class="nav-tab flex-1 flex flex-col items-center gap-0.5 py-2 text-[10px] font-medium border-t-2 border-transparent transition text-slate-400" data-tab="history" role="tab" aria-selected="false">
+          <span class="text-base leading-none">📚</span>
+          <span data-i18n="app.nav.history">التاريخ</span>
+        </button>
+      </div>
+    </nav>
+  </div>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
